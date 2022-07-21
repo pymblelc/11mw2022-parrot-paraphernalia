@@ -1,18 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title>Starter Website</title>
-
-    <!-- Style -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Script -->
+    <title>AI Assessment</title>
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js" defer></script>
     <script src="script.js" defer></script>
-  </head>
-  <body>
-    <!-- Here's your starter project! Enjoy! -->
-  </body>
+    <script src="ai.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <!-- icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+    <div class="topBar"> 
+        <p>I Know What Playlist You Need Right Now!</p>
+    </div>
+    <div class="photoBooth">
+        <video id="webcam"> </video>
+        <canvas id="canvas">  </canvas>
+    </div>
+    <div class="boothButtons">
+        <button id="startCamera"> 
+            <span class="material-symbols-outlined"> play_arrow </span>
+        </button>
+        <button id="stopCamera"> 
+            <span class="material-symbols-outlined"> stop </span>
+            </button>
+        <button id="takePhoto">
+            <span class="material-symbols-outlined"> photo_camera </span>
+            </button>
+        <button id="submit"> 
+            <span class="material-symbols-outlined"> check </span>
+             </button>
+        <button id="retake">
+            <span class="material-symbols-outlined"> undo </span>
+        </button>
+    </div>
+    <br>
+    <br>
+    <div id="postSubmission">
+    <p id="locationTxt"> are you currently: </p>
+    <p> (clicking NO will allow you to retake the photo.) </p>
+    <button id="confirm"> YES </button>
+    <button id="retake2"> NO </button>
+    </div>
+
+    <div id="spotifyEmbed">
+    <iframe id="workoutEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIfGSSqagkuBB?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <iframe id="studyEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeI2iuGXzYQW?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+    <p> Didn't work? Manually select your activity below:</p>
+
+    <!-- <audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio> -->
+
+</body>
 </html>
