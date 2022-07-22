@@ -13,9 +13,16 @@ let retake2Btn = document.getElementById("retake2");
 let confirmBtn = document.getElementById("confirm");
 
 let postSubmissionTxt = document.getElementById("postSubmission"); // div. includes a couple lines of stuff
-postSubmissionTxt.style.display = "hidden";
+postSubmissionTxt.style.display = "none";
+
+let allSpotifyEmbed = document.getElementById("spotifyEmbed");
+let choresEmbed = document.getElementById("choresEmbed");
 let workoutEmbed = document.getElementById("workoutEmbed");
 let studyEmbed = document.getElementById("studyEmbed");
+allSpotifyEmbed.style.display = "none";
+let otherTxt = document.getElementById("otherTxt");
+let contingency = document.getElementById("contingencyTxt");
+contingency.style.display = "none";
 
 // let snapSoundElement = document.getElementById('snapSound');
 
@@ -30,54 +37,84 @@ startCameraBtn.addEventListener("click", function() {
     .catch((error) => {
         console.log("error sadge");
     });
+    otherTxt.style.display = "none";
 })
 
 stopCameraBtn.addEventListener("click", function() {
     webcamClass.stop();
 })
 
-takePhotoBtn.addEventListener("click", function () {
-    var picture = webcamClass.snap(); //what. why is it a variable
-    webcamClass.stop();
-  });
-
 retakeBtn.addEventListener("click", function() {
     webcamClass.start();
     canvasCtx.clearRect(0,0,canvas.width,canvas.height);
+    otherTxt.style.display = "none";
 })
+
+takePhotoBtn.addEventListener("click", function() {
+  var picture = webcamClass.snap(); 
+  webcamClass.stop();
+  otherTxt.innerHTML = "";
+})
+
+// the 'no' button in the post-submission text
+let fail = 0; // if it doesn't work too many times, it allows the user to enter it manually
 retake2Btn.addEventListener("click", function() {
   webcamClass.start();
   canvasCtx.clearRect(0,0,canvas.width,canvas.height);
+  fail = fail + 1;
+  console.log("number of fails: " + fail);
+  if (fail == 3) {
+    contingency.style.display = "block";
+    console.log("too many fails, sad")
+  }
+  postSubmissionTxt.style.display = "none";
+  locationTxt.innerHTML = "are you currently: ";
 })
 
-  // time to actually send this info to the api
-  // canvas -> getcontext ('canvasCtx') -> blob -> api
+let confirmed = "";
+
+confirmBtn.addEventListener("click", function() {
+  otherTxt.innerHTML = "Cool! Let me grab your playlist real quick."
+  confirmed = true;
+  console.log("confirmed: " + confirmed);
+})
+
+  // submitting the photo taken
 submitBtn.addEventListener("click", function() {
-  postSubmissionTxt.style.display = "visible";
+  console.log("submitted!");
+  postSubmissionTxt.style.display = "block";
   myCanvas.toBlob(function(blob) {
+        console.log("blob-ified");
         ImageAPI.analyseImageBlob(blob, (data) => {
-          console.log(data);
           let tags = data.description.tags;
           console.log(tags);
-
+          
           let workoutBool = tags.includes("outdoor" || "tree" || "road" || "street" || "sidewalk");
-
-          let studyBool = tags.includes("");
+          let studyBool = tags.includes("table" || "desk" || "computer" || "laptop" || "office");
+          let choresBool = tags.includes("kitchenware" || "sink" || "plate" || "kitchen");
 
           if (workoutBool == true) {
-            console.log("searching for playlist...");
             locationTxt.innerHTML += "going on a stroll?";
-
-          } else {
-            locationTxt.innerHTML = "Hmm. I'm not sure. Try taking a more relevant photo."
+            if (confirmed == true) {
+              workoutEmbed.style.display = "block";
+            }
+          }
+          else if  (studyBool == true) {
+            locationTxt.innerHTML += "studying?";
+          }
+          else if (choresBool == true) {
+            locationTxt.innerHTML += "washing dishes?";
+          }
+           else {
+            otherTxt.style.display = "block";
+            otherTxt.innerHTML = "Hmm. I'm not sure. Try taking a more relevant photo.";
+            postSubmissionTxt.style.display = "none";
+            fail = fail + 1;
+            console.log("number of fails: " + fail);
           }
         })
     })
 })
 
-confirmBtn.addEventListener("click", function() {
-  locationTxt.innerHTML = "Cool! Let me grab your playlist real quick."
-  
 
-})
 

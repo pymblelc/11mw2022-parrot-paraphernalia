@@ -27,36 +27,52 @@
         <canvas id="canvas">  </canvas>
     </div>
     <div class="boothButtons">
+        <div>
         <button id="startCamera"> 
             <span class="material-symbols-outlined"> play_arrow </span>
         </button>
         <button id="stopCamera"> 
             <span class="material-symbols-outlined"> stop </span>
             </button>
+        </div>
         <button id="takePhoto">
             <span class="material-symbols-outlined"> photo_camera </span>
-            </button>
+        </button>
+        <div>
         <button id="submit"> 
             <span class="material-symbols-outlined"> check </span>
              </button>
         <button id="retake">
             <span class="material-symbols-outlined"> undo </span>
         </button>
+        </div>
     </div>
-    <br>
-    <br>
+    <br> <br> <br> <br> <br>
     <div id="postSubmission">
-    <p id="locationTxt"> are you currently: </p>
-    <p> (clicking NO will allow you to retake the photo.) </p>
-    <button id="confirm"> YES </button>
-    <button id="retake2"> NO </button>
+        <p id="locationTxt"> are you currently: </p>
+        <p> (clicking NO will allow you to retake the photo.) </p>
+        <button id="confirm"> YES </button>
+        <button id="retake2"> NO </button>
     </div>
-
-    <div id="spotifyEmbed">
-    <iframe id="workoutEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIfGSSqagkuBB?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    <iframe id="studyEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeI2iuGXzYQW?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <p id="otherTxt"> </p>
+    <br>
+    <div id="spotifyEmbed" class="allSpotify">
+        <iframe id="choresEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWT0IiTU5mrJ9?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        <iframe id="workoutEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIfGSSqagkuBB?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        <iframe id="studyEmbed" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeI2iuGXzYQW?utm_source=generator" width="80%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
-    <p> Didn't work? Manually select your activity below:</p>
+     
+<br> <br>
+<div id="contingencyTxt">
+    <label> Didn't work? Manually select your activity below: </label>
+    <select id="activityDropdown">
+        <option value="Select...">Select...</option>
+        <option value="studyDD">Studying</option>
+        <option value="workoutDD">Exercising</option>
+        <option value="choresDD">Doing chores</option>
+    </select>
+</div>   
+        
 
     <!-- <audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio> -->
 

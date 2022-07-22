@@ -13,13 +13,17 @@ body {
 p {
     color:#DBE4E7;
 }
+label {
+    color:#DBE4E7;
+}
 
 .topBar {
     color:#DBE4E7;
     background-color:#0B1823;
     width:100%;
     height:60px;
-    position:absolute;
+    position:sticky;
+    z-index: 999;
     display:flex;
     justify-content: center;
     top:0;
@@ -47,7 +51,8 @@ button {
     justify-content: center;
     position:relative;
     justify-content:space-evenly;
-
+    padding: 40px;
+    top: 100px;
 }
 
 video {
@@ -76,4 +81,10 @@ canvas {
     border-width:5px;
     border-bottom-left-radius: 0%;
     border-top-left-radius: 0%;
+}
+
+.allSpotify {
+    position: relative;
+    justify-content: center;
+
 }
