@@ -63,20 +63,12 @@ retake2Btn.addEventListener("click", function() {
   canvasCtx.clearRect(0,0,canvas.width,canvas.height);
   fail = fail + 1;
   console.log("number of fails: " + fail);
-  if (fail == 3) {
+  if (fail = 3) {
     contingency.style.display = "block";
     console.log("too many fails, sad")
   }
   postSubmissionTxt.style.display = "none";
   locationTxt.innerHTML = "are you currently: ";
-})
-
-let confirmed = "";
-
-confirmBtn.addEventListener("click", function() {
-  otherTxt.innerHTML = "Cool! Let me grab your playlist real quick."
-  confirmed = true;
-  console.log("confirmed: " + confirmed);
 })
 
   // submitting the photo taken
@@ -95,9 +87,6 @@ submitBtn.addEventListener("click", function() {
 
           if (workoutBool == true) {
             locationTxt.innerHTML += "going on a stroll?";
-            if (confirmed == true) {
-              workoutEmbed.style.display = "block";
-            }
           }
           else if  (studyBool == true) {
             locationTxt.innerHTML += "studying?";
@@ -114,6 +103,19 @@ submitBtn.addEventListener("click", function() {
           }
         })
     })
+})
+
+confirmBtn.addEventListener("click", function() {
+  otherTxt.innerHTML = "Cool! Let me grab your playlist real quick."
+  if (workoutBool == true) {
+    workoutEmbed.style.display = "block";
+  }
+  else if (studyBool == true) {
+    studyEmbed.style.display = "block";
+  }
+  else if (choresBool == true) {
+    choresEmbed.style.display = "block";
+  }
 })
 
 
